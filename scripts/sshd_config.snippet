@@ -1,0 +1,14 @@
+Match Group ml-students
+    # Force execution into the C++ wrapper only (ignores any user-supplied command)
+    ForceCommand /usr/local/bin/queue-wrapper
+
+    # Security Lockdowns
+    AllowTcpForwarding no
+    X11Forwarding no
+    AllowAgentForwarding no
+    PermitTTY yes
+    PermitUserEnvironment no
+
+    # Authentication Lockdowns
+    PasswordAuthentication no
+    PubkeyAuthentication yes
