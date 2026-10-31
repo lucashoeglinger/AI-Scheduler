@@ -20,37 +20,37 @@ JobStatus string_to_status(const std::string& str) {
     return JobStatus::PENDING;
 }
 
-void read_jobs(const std::string& username, const std::string& DB_PATH) {
-    std::ifstream file(DB_PATH);
+std::vector<Job> read_jobs(const std::string& username, const std::string& db_path) {
+    std::vector<Job> jobs;
+    std::ifstream file(db_path);
+
     if (!file.is_open()) {
-        std::cerr << "[ERROR] Could not open database file: " << DB_PATH << std::endl;
-        return;
+        std::cerr << "[ERROR] Could not open database file: " << db_path << std::endl;
+        return jobs;
     }
 
     std::string line;
-    std::vector<std::string> linesToUser;
-
     while (std::getline(file, line)) {
         if (line.empty()) continue;
 
         std::istringstream iss(line);
         std::string token;
+        Job j;
 
-        int i = 0;
-        while (std::getline(iss, token, ';')) {
-            if (i == 1) {
-                if (token == username) {
-                    linesToUser.push_back(line);
-                }
-                break;
-            }
-            i++;
+        if (std::getline(iss, token, ';')) j.id = std::stoi(token);
+        if (std::getline(iss, token, ';')) j.user = token;
+        if (std::getline(iss, token, ';')) j.script_path = token;
+        if (std::getline(iss, token, ';')) j.vram_gb = std::stoi(token);
+        if (std::getline(iss, token, ';')) j.max_hours = std::stoi(token);
+        if (std::getline(iss, token, ';')) j.priority = std::stoi(token);
+        if (std::getline(iss, token, ';')) j.status = string_to_status(token);
+
+        if (username.empty() || j.user == username) {
+            jobs.push_back(j);
         }
     }
 
-    for (const auto l : linesToUser) {
-        std::cout << l << std::endl;
-    }
+    return jobs;
 }
 
 bool write_jobs(const std::vector<Job>& jobs, const std::string& db_path) {

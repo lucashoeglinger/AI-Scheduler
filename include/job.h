@@ -19,7 +19,7 @@ struct Job{
     JOB_STATUS status,
 }
 
-void read_jobs(std::string& username, std::string& DB_PATH){}
+std::vector<Job> read_jobs(std::string& username, std::string& DB_PATH){}
 bool write_jobs(std::vector<Job> jobs, std::string& DB_PATH){}
 
 #endif
