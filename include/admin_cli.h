@@ -1,8 +1,8 @@
-#ifndef USERCLI_H
-#define USERCLI_H
+#ifndef ADMINCLI_H
+#define ADMINCLI_H
 #include <string>
 
 namespace AdminCLI{
-    void run (const std::string& username, const std::string& db_path){}
+    void run (const std::string& username, const std::string& db_path);
 }
 #endif

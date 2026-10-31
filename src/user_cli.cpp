@@ -1,6 +1,6 @@
-#include "user_cli.hpp"
-#include "job.hpp"
-#include "priority.hpp"
+#include "user_cli.h"
+#include "job.h"
+#include "priority.h"
 #include <iostream>
 #include <limits>
 
@@ -71,7 +71,7 @@ void run(const std::string& username, const std::string& db_path) {
                 std::cout << "Calculate Priority: " << new_job.priority << "\n";
                 std::cout << "Status: " << status_to_color_string(new_job.status) << "\n";
             } else {
-                std::cout << "\n[ERROR] Encountered a unknown error while saving to databaes.\n";
+                std::cout << "\n[ERROR] Encountered an unknown error while saving to database.\n";
             }
 
         } else if (choice == 2) {
@@ -97,7 +97,7 @@ void run(const std::string& username, const std::string& db_path) {
             std::cout << "\nGood Bye!\n";
             running = false;
         } else {
-            std::cout << "\n[!]Invalid option, please choose [1], [2] or [3]\n";
+            std::cout << "\n[!] Invalid option, please choose [1], [2] or [3]\n";
         }
     }
 }

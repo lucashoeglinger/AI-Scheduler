@@ -1,4 +1,4 @@
-#include "priority.hpp"
+#include "priority.h"
 #include <algorithm>
 
 namespace PriorityEngine {
