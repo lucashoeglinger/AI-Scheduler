@@ -15,7 +15,7 @@ A lightweight, secure, and POSIX-integrated C++17 GPU job scheduling wrapper des
 ---
 
 ## System Architecture
-
+``` text
 gpu-queue-wrapper/
 ├── include/
 │   ├── admin_cli.h       # Administrator interface declarations
@@ -31,7 +31,7 @@ gpu-queue-wrapper/
 ├── Makefile              # Build automation script
 ├── LICENSE               # PolyForm Noncommercial 1.0.0 (No-Malicious Clause)
 └── README.md             # Project documentation
-
+```
 ---
 
 ## Installation & Building
@@ -41,32 +41,44 @@ gpu-queue-wrapper/
 Ensure `g++` (supporting C++17) and `make` are installed on your Linux system:
 
 # Ubuntu / Debian
+```bash
 sudo apt update && sudo apt install build-essential g++
+```
 
 # Arch Linux
+```bash
 sudo pacman -S base-devel gcc
-
+```
 # Fedora / RHEL
+```bash
 sudo dnf install gcc-c++ make
-
+```
 ### Build Steps
 
 1. **Clone the repository:**
+   ```bash
    git clone https://github.com/your-username/gpu-queue-wrapper.git
    cd gpu-queue-wrapper
+   ```
 
-2. **Compile the binary:**
+3. **Compile the binary:**
+   ```bash
    make
-
-3. **Run automated checks:**
+   ```
+5. **Run automated checks:**
+   ```bash
    make check
+   ```
 
-4. **Verify release package build:**
+7. **Verify release package build:**
+   ```bash
    make distcheck
+   ```
 
-5. **Install system-wide:**
+9. **Install system-wide:**
+    ```bash
    sudo make install
-
+    ```
 ---
 
 ## Setup & Database Permissions
@@ -74,6 +86,7 @@ sudo dnf install gcc-c++ make
 The wrapper uses `/var/log/gpu_queue.txt` to store queue states. Create the database file and set group permissions for student access:
 
 # Create the log file
+```bash
 sudo touch /var/log/gpu_queue.txt
 
 # Option A: Restrict write access to the 'ml-students' group
@@ -82,6 +95,7 @@ sudo chmod 660 /var/log/gpu_queue.txt
 
 # Option B: Grant write access to all local users
 sudo chmod 666 /var/log/gpu_queue.txt
+```
 
 ---
 
@@ -89,13 +103,14 @@ sudo chmod 666 /var/log/gpu_queue.txt
 
 ### User Mode (Students)
 Start the CLI as a standard user to submit or inspect GPU job requests:
-
+```bash
 queue-wrapper
-
+```
 ### Admin Mode (Cluster Administrators)
 Requires root privileges to approve, reject, or manually boost job priorities:
-
+```bash
 sudo queue-wrapper --admin
+```
 
 ---
 
